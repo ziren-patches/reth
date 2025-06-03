@@ -440,31 +440,31 @@ reth-ress-protocol = { path = "crates/ress/protocol" }
 reth-ress-provider = { path = "crates/ress/provider" }
 
 # revm
-# revm = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-bytecode = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-database = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-state = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-primitives = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-interpreter = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-inspector = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-context = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-context-interface = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-database-interface = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# op-revm = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0", default-features = false }
-# revm-inspectors = { git = "https://github.com/zkMIPS-patches/revm-inspectors", branch = "patch-0.19.0" }
+revm = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-bytecode = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-database = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-state = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-primitives = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-interpreter = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-inspector = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-context = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-context-interface = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-database-interface = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+op-revm = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-inspectors = { git = "https://github.com/zkMIPS-patches/revm-inspectors", branch = "patch-0.19.0-goat" }
 
-revm = { path = "../revm/crates/revm", default-features = false }
-revm-bytecode = { path = "../revm/crates/bytecode", default-features = false }
-revm-database = { path = "../revm/crates/database", default-features = false }
-revm-state = { path = "../revm/crates/state", default-features = false }
-revm-primitives = { path = "../revm/crates/primitives", default-features = false }
-revm-interpreter = { path = "../revm/crates/interpreter", default-features = false }
-revm-inspector = { path = "../revm/crates/inspector", default-features = false }
-revm-context = { path = "../revm/crates/context", default-features = false }
-revm-context-interface = { path = "../revm/crates/context/interface", default-features = false }
-revm-database-interface = { path = "../revm/crates/database/interface", default-features = false }
-op-revm = { path = "../revm/crates/optimism", default-features = false }
-revm-inspectors = { path = "../revm-inspectors" }
+# revm = { path = "../revm/crates/revm", default-features = false }
+# revm-bytecode = { path = "../revm/crates/bytecode", default-features = false }
+# revm-database = { path = "../revm/crates/database", default-features = false }
+# revm-state = { path = "../revm/crates/state", default-features = false }
+# revm-primitives = { path = "../revm/crates/primitives", default-features = false }
+# revm-interpreter = { path = "../revm/crates/interpreter", default-features = false }
+# revm-inspector = { path = "../revm/crates/inspector", default-features = false }
+# revm-context = { path = "../revm/crates/context", default-features = false }
+# revm-context-interface = { path = "../revm/crates/context/interface", default-features = false }
+# revm-database-interface = { path = "../revm/crates/database/interface", default-features = false }
+# op-revm = { path = "../revm/crates/optimism", default-features = false }
+# revm-inspectors = { path = "../revm-inspectors" }
 
 # eth
 alloy-chains = { version = "0.2.0", default-features = false }
@@ -476,83 +476,84 @@ alloy-sol-macro = "1.0.0"
 alloy-sol-types = { version = "1.0.0", default-features = false }
 alloy-trie = { version = "0.8.1", default-features = false }
 alloy-hardforks = "0.2.0"
-# alloy-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0", default-features = false }
 
-# alloy-consensus = { version = "0.14.0", default-features = false }
-# alloy-contract = { version = "0.14.0", default-features = false }
-# alloy-eips = { version = "0.14.0", default-features = false }
-# alloy-genesis = { version = "0.14.0", default-features = false }
-# alloy-json-rpc = { version = "0.14.0", default-features = false }
-# alloy-network = { version = "0.14.0", default-features = false }
-# alloy-network-primitives = { version = "0.14.0", default-features = false }
-# alloy-node-bindings = { version = "0.14.0", default-features = false }
-# alloy-provider = { version = "0.14.0", features = ["reqwest"], default-features = false }
-# alloy-pubsub = { version = "0.14.0", default-features = false }
-# alloy-rpc-client = { version = "0.14.0", default-features = false }
-# alloy-rpc-types = { version = "0.14.0", features = ["eth"], default-features = false }
-# alloy-rpc-types-admin = { version = "0.14.0", default-features = false }
-# alloy-rpc-types-anvil = { version = "0.14.0", default-features = false }
-# alloy-rpc-types-beacon = { version = "0.14.0", default-features = false }
-# alloy-rpc-types-debug = { version = "0.14.0", default-features = false }
-# alloy-rpc-types-engine = { version = "0.14.0", default-features = false }
-# alloy-rpc-types-eth = { version = "0.14.0", default-features = false }
-# alloy-rpc-types-mev = { version = "0.14.0", default-features = false }
-# alloy-rpc-types-trace = { version = "0.14.0", default-features = false }
-# alloy-rpc-types-txpool = { version = "0.14.0", default-features = false }
-# alloy-serde = { version = "0.14.0", default-features = false }
-# alloy-signer = { version = "0.14.0", default-features = false }
-# alloy-signer-local = { version = "0.14.0", default-features = false }
-# alloy-transport = { version = "0.14.0" }
-# alloy-transport-http = { version = "0.14.0", features = ["reqwest-rustls-tls"], default-features = false }
-# alloy-transport-ipc = { version = "0.14.0", default-features = false }
-# alloy-transport-ws = { version = "0.14.0", default-features = false }
+alloy-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0-goat", default-features = false }
+alloy-consensus = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-contract = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-eips = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-genesis = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-json-rpc = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-network = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-network-primitives = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-node-bindings = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-provider = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", features = ["reqwest"], default-features = false }
+alloy-pubsub = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-client = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", features = ["eth"], default-features = false }
+alloy-rpc-types-admin = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-anvil = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-beacon = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-debug = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-engine = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-eth = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-mev = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-trace = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-txpool = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-serde = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-signer = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-signer-local = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-transport = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat" }
+alloy-transport-http = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", features = ["reqwest-rustls-tls"], default-features = false }
+alloy-transport-ipc = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-transport-ws = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
 
-alloy-evm = { path = "../evm/crates/evm", default-features = false }
-alloy-consensus = { path = "../alloy/crates/consensus", default-features = false }
-alloy-contract = { path = "../alloy/crates/contract", default-features = false }
-alloy-eips = { path = "../alloy/crates/eips", default-features = false }
-alloy-genesis = { path = "../alloy/crates/genesis", default-features = false }
-alloy-json-rpc = { path = "../alloy/crates/json-rpc", default-features = false }
-alloy-network = { path = "../alloy/crates/network", default-features = false }
-alloy-network-primitives = { path = "../alloy/crates/network-primitives", default-features = false }
-alloy-node-bindings = { path = "../alloy/crates/node-bindings", default-features = false }
-alloy-provider = { path = "../alloy/crates/provider", features = ["reqwest"], default-features = false }
-alloy-pubsub = { path = "../alloy/crates/pubsub", default-features = false }
-alloy-rpc-client = { path = "../alloy/crates/rpc-client", default-features = false }
-alloy-rpc-types = { path = "../alloy/crates/rpc-types", features = ["eth"], default-features = false }
-alloy-rpc-types-admin = { path = "../alloy/crates/rpc-types-admin", default-features = false }
-alloy-rpc-types-anvil = { path = "../alloy/crates/rpc-types-anvil", default-features = false }
-alloy-rpc-types-beacon = { path = "../alloy/crates/rpc-types-beacon", default-features = false }
-alloy-rpc-types-debug = { path = "../alloy/crates/rpc-types-debug", default-features = false }
-alloy-rpc-types-engine = { path = "../alloy/crates/rpc-types-engine", default-features = false }
-alloy-rpc-types-eth = { path = "../alloy/crates/rpc-types-eth", default-features = false }
-alloy-rpc-types-mev = { path = "../alloy/crates/rpc-types-mev", default-features = false }
-alloy-rpc-types-trace = { path = "../alloy/crates/rpc-types-trace", default-features = false }
-alloy-rpc-types-txpool = { path = "../alloy/crates/rpc-types-txpool", default-features = false }
-alloy-serde = { path = "../alloy/crates/serde", default-features = false }
-alloy-signer = { path = "../alloy/crates/signer", default-features = false }
-alloy-signer-local = { path = "../alloy/crates/signer-local", default-features = false }
-alloy-transport = { path = "../alloy/crates/transport" }
-alloy-transport-http = { path = "../alloy/crates/transport-http", features = ["reqwest-rustls-tls"], default-features = false }
-alloy-transport-ipc = { path = "../alloy/crates/transport-ipc", default-features = false }
-alloy-transport-ws = { path = "../alloy/crates/transport-ws", default-features = false }
+# alloy-evm = { path = "../evm/crates/evm", default-features = false }
+# alloy-consensus = { path = "../alloy/crates/consensus", default-features = false }
+# alloy-contract = { path = "../alloy/crates/contract", default-features = false }
+# alloy-eips = { path = "../alloy/crates/eips", default-features = false }
+# alloy-genesis = { path = "../alloy/crates/genesis", default-features = false }
+# alloy-json-rpc = { path = "../alloy/crates/json-rpc", default-features = false }
+# alloy-network = { path = "../alloy/crates/network", default-features = false }
+# alloy-network-primitives = { path = "../alloy/crates/network-primitives", default-features = false }
+# alloy-node-bindings = { path = "../alloy/crates/node-bindings", default-features = false }
+# alloy-provider = { path = "../alloy/crates/provider", features = ["reqwest"], default-features = false }
+# alloy-pubsub = { path = "../alloy/crates/pubsub", default-features = false }
+# alloy-rpc-client = { path = "../alloy/crates/rpc-client", default-features = false }
+# alloy-rpc-types = { path = "../alloy/crates/rpc-types", features = ["eth"], default-features = false }
+# alloy-rpc-types-admin = { path = "../alloy/crates/rpc-types-admin", default-features = false }
+# alloy-rpc-types-anvil = { path = "../alloy/crates/rpc-types-anvil", default-features = false }
+# alloy-rpc-types-beacon = { path = "../alloy/crates/rpc-types-beacon", default-features = false }
+# alloy-rpc-types-debug = { path = "../alloy/crates/rpc-types-debug", default-features = false }
+# alloy-rpc-types-engine = { path = "../alloy/crates/rpc-types-engine", default-features = false }
+# alloy-rpc-types-eth = { path = "../alloy/crates/rpc-types-eth", default-features = false }
+# alloy-rpc-types-mev = { path = "../alloy/crates/rpc-types-mev", default-features = false }
+# alloy-rpc-types-trace = { path = "../alloy/crates/rpc-types-trace", default-features = false }
+# alloy-rpc-types-txpool = { path = "../alloy/crates/rpc-types-txpool", default-features = false }
+# alloy-serde = { path = "../alloy/crates/serde", default-features = false }
+# alloy-signer = { path = "../alloy/crates/signer", default-features = false }
+# alloy-signer-local = { path = "../alloy/crates/signer-local", default-features = false }
+# alloy-transport = { path = "../alloy/crates/transport" }
+# alloy-transport-http = { path = "../alloy/crates/transport-http", features = ["reqwest-rustls-tls"], default-features = false }
+# alloy-transport-ipc = { path = "../alloy/crates/transport-ipc", default-features = false }
+# alloy-transport-ws = { path = "../alloy/crates/transport-ws", default-features = false }
 
 # op
 alloy-op-hardforks = "0.2.0"
 op-alloy-flz = { version = "0.13.0", default-features = false }
-# alloy-op-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0", default-features = false }
-# op-alloy-rpc-types = { version = "0.13.0", default-features = false }
-# op-alloy-rpc-types-engine = { version = "0.13.0", default-features = false }
-# op-alloy-network = { version = "0.13.0", default-features = false }
-# op-alloy-consensus = { version = "0.13.0", default-features = false }
-# op-alloy-rpc-jsonrpsee = { version = "0.13.0", default-features = false }
 
-alloy-op-evm = { path = "../evm/crates/op-evm", default-features = false }
-op-alloy-rpc-types = { path = "../op-alloy/crates/rpc-types", default-features = false }
-op-alloy-rpc-types-engine = { path = "../op-alloy/crates/rpc-types-engine", default-features = false }
-op-alloy-network = { path = "../op-alloy/crates/network", default-features = false }
-op-alloy-consensus = { path = "../op-alloy/crates/consensus", default-features = false }
-op-alloy-rpc-jsonrpsee = { path = "../op-alloy/crates/rpc-jsonrpsee", default-features = false }
+alloy-op-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0-goat", default-features = false }
+op-alloy-rpc-types = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+op-alloy-rpc-types-engine = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+op-alloy-network = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+op-alloy-consensus = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+op-alloy-rpc-jsonrpsee = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+
+# alloy-op-evm = { path = "../evm/crates/op-evm", default-features = false }
+# op-alloy-rpc-types = { path = "../op-alloy/crates/rpc-types", default-features = false }
+# op-alloy-rpc-types-engine = { path = "../op-alloy/crates/rpc-types-engine", default-features = false }
+# op-alloy-network = { path = "../op-alloy/crates/network", default-features = false }
+# op-alloy-consensus = { path = "../op-alloy/crates/consensus", default-features = false }
+# op-alloy-rpc-jsonrpsee = { path = "../op-alloy/crates/rpc-jsonrpsee", default-features = false }
 
 # misc
 aquamarine = "0.6"
