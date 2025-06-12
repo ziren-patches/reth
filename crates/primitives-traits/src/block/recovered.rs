@@ -39,6 +39,16 @@ pub struct RecoveredBlock<B: Block> {
     block: SealedBlock<B>,
     /// List of senders that match the transactions in the block
     senders: Vec<Address>,
+    /// Whether or not to preprocess the block.
+    pub is_first_subblock: bool,
+    /// Whether or not to postprocess the block.
+    pub is_last_subblock: bool,
+    /// The gas limit for the subblock. If zero, no limit is enforced.
+    ///
+    /// The RSP host executor uses this to split up the subblocks. The RSP client executor does not.
+    pub subblock_gas_limit: u64,
+    /// The gas used in the previous subblocks.
+    pub starting_gas_used: u64,
 }
 
 impl<B: Block> RecoveredBlock<B> {
@@ -47,14 +57,28 @@ impl<B: Block> RecoveredBlock<B> {
     ///
     /// Note: This expects that the given senders match the transactions in the block.
     pub fn new(block: B, senders: Vec<Address>, hash: BlockHash) -> Self {
-        Self { block: SealedBlock::new_unchecked(block, hash), senders }
+        Self {
+            block: SealedBlock::new_unchecked(block, hash),
+            senders,
+            is_first_subblock: true,
+            is_last_subblock: true,
+            subblock_gas_limit: 0,
+            starting_gas_used: 0,
+        }
     }
 
     /// Creates a new recovered block instance with the given senders as provided.
     ///
     /// Note: This expects that the given senders match the transactions in the block.
     pub fn new_unhashed(block: B, senders: Vec<Address>) -> Self {
-        Self { block: SealedBlock::new_unhashed(block), senders }
+        Self {
+            block: SealedBlock::new_unhashed(block),
+            senders,
+            is_first_subblock: true,
+            is_last_subblock: true,
+            subblock_gas_limit: 0,
+            starting_gas_used: 0,
+        }
     }
 
     /// Returns the recovered senders.
@@ -80,7 +104,14 @@ impl<B: Block> RecoveredBlock<B> {
     /// Creates a new recovered block instance with the given [`SealedBlock`] and senders as
     /// provided
     pub const fn new_sealed(block: SealedBlock<B>, senders: Vec<Address>) -> Self {
-        Self { block, senders }
+        Self {
+            block,
+            senders,
+            is_first_subblock: true,
+            is_last_subblock: true,
+            subblock_gas_limit: 0,
+            starting_gas_used: 0,
+        }
     }
 
     /// A safer variant of [`Self::new_unhashed`] that checks if the number of senders is equal to
