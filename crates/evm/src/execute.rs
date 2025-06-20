@@ -22,7 +22,7 @@ use reth_trie_common::{updates::TrieUpdates, HashedPostState};
 use revm::{
     context::result::ExecutionResult,
     database::{states::bundle_state::BundleRetention, BundleState, State},
-    primitives::goat::GOAT_CHAIN_ID,
+    primitives::goat::{GOAT_CHAIN_ID, GOAT_TESTNET_CHAIN_ID},
 };
 
 /// A type that knows how to execute a block. It is assumed to operate on a
@@ -466,7 +466,7 @@ impl<F, DB: Database> BasicBlockExecutor<F, DB> {
 }
 
 fn is_goat_chain(chain_id: u64) -> bool {
-    chain_id == GOAT_CHAIN_ID
+    chain_id == GOAT_CHAIN_ID || chain_id == GOAT_TESTNET_CHAIN_ID
 }
 
 impl<F, DB> Executor<DB> for BasicBlockExecutor<F, DB>
