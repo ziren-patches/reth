@@ -959,7 +959,7 @@ impl FromRecoveredTx<TransactionSigned> for TxEnv {
                     nonce: tx.nonce,
                     data: tx.input.clone(),
                     tx_type: 0x60,
-                    chain_id: Some(2345),
+                    chain_id: Some(goat_tx.chain_id),
                     caller: goat.sender(),
                     kind: TxKind::Call(goat.to()),
                     goat: Some(goat),
