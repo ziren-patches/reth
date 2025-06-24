@@ -496,7 +496,7 @@ alloy-transport-ipc = { version = "0.14.0", default-features = false }
 alloy-transport-ws = { version = "0.14.0", default-features = false }
 
 # op
-alloy-op-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0", default-features = false }
+alloy-op-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0-subblock", default-features = false }
 alloy-op-hardforks = "0.2.0"
 op-alloy-rpc-types = { version = "0.13.0", default-features = false }
 op-alloy-rpc-types-engine = { version = "0.13.0", default-features = false }

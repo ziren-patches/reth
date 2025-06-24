@@ -257,24 +257,6 @@ dependencies = [
 [[package]]
 name = "alloy-evm"
 version = "0.4.0"
-source = "git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0#389ca65d297f9f23822b06e93668f0962e7497f5"
-dependencies = [
- "alloy-consensus",
- "alloy-eips",
- "alloy-hardforks",
- "alloy-primitives 1.2.1",
- "alloy-sol-types",
- "auto_impl",
- "derive_more",
- "op-alloy-consensus",
- "op-revm",
- "revm",
- "thiserror 2.0.12",
-]
-
-[[package]]
-name = "alloy-evm"
-version = "0.4.0"
 source = "git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock#860f8295d14ffc5e6590afb25ff576f1c7ba42b6"
 dependencies = [
  "alloy-consensus",
@@ -406,11 +388,11 @@ dependencies = [
 [[package]]
 name = "alloy-op-evm"
 version = "0.4.0"
-source = "git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0#389ca65d297f9f23822b06e93668f0962e7497f5"
+source = "git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock#860f8295d14ffc5e6590afb25ff576f1c7ba42b6"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0)",
+ "alloy-evm",
  "alloy-op-hardforks",
  "alloy-primitives 1.2.1",
  "auto_impl",
@@ -3345,7 +3327,7 @@ name = "example-custom-beacon-withdrawals"
 version = "0.0.0"
 dependencies = [
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-sol-macro",
  "alloy-sol-types",
  "eyre",
@@ -3393,7 +3375,7 @@ dependencies = [
 name = "example-custom-evm"
 version = "0.0.0"
 dependencies = [
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-genesis",
  "alloy-primitives 1.2.1",
  "eyre",
@@ -3409,7 +3391,7 @@ name = "example-custom-inspector"
 version = "0.0.0"
 dependencies = [
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-primitives 1.2.1",
  "alloy-rpc-types-eth",
  "clap",
@@ -3424,7 +3406,7 @@ version = "0.0.0"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-genesis",
  "alloy-op-evm",
  "alloy-primitives 1.2.1",
@@ -3596,7 +3578,7 @@ dependencies = [
 name = "example-precompile-cache"
 version = "0.0.0"
 dependencies = [
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-genesis",
  "alloy-primitives 1.2.1",
  "eyre",
@@ -7158,7 +7140,7 @@ dependencies = [
  "alloy-chains",
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-genesis",
  "alloy-primitives 1.2.1",
  "alloy-rlp",
@@ -7773,7 +7755,7 @@ version = "1.3.10"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-primitives 1.2.1",
  "alloy-rlp",
  "alloy-rpc-types-engine",
@@ -8084,7 +8066,7 @@ version = "1.3.10"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-network",
  "alloy-primitives 1.2.1",
  "alloy-rlp",
@@ -8124,7 +8106,7 @@ version = "1.3.10"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-primitives 1.2.1",
  "auto_impl",
  "derive_more",
@@ -8151,7 +8133,7 @@ version = "1.3.10"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-genesis",
  "alloy-primitives 1.2.1",
  "reth-chainspec",
@@ -8169,7 +8151,7 @@ dependencies = [
 name = "reth-execution-errors"
 version = "1.3.10"
 dependencies = [
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-primitives 1.2.1",
  "alloy-rlp",
  "nybbles",
@@ -8183,7 +8165,7 @@ version = "1.3.10"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-primitives 1.2.1",
  "arbitrary",
  "bincode 1.3.3",
@@ -8958,7 +8940,7 @@ version = "1.3.10"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-genesis",
  "alloy-op-evm",
  "alloy-primitives 1.2.1",
@@ -9089,7 +9071,7 @@ version = "1.3.10"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-network",
  "alloy-primitives 1.2.1",
  "alloy-rlp",
@@ -9528,7 +9510,7 @@ dependencies = [
  "alloy-consensus",
  "alloy-dyn-abi",
  "alloy-eips",
- "alloy-evm 0.4.0 (git+https://github.com/zkMIPS-patches/evm?branch=patch-0.4.0-subblock)",
+ "alloy-evm",
  "alloy-genesis",
  "alloy-network",
  "alloy-primitives 1.2.1",
