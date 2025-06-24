@@ -9,7 +9,7 @@ use alloc::vec::Vec;
 use alloy_consensus::{transaction::Recovered, BlockHeader};
 use alloy_eips::{eip1898::BlockWithParent, BlockNumHash};
 use alloy_primitives::{Address, BlockHash, BlockNumber, Bloom, Bytes, Sealed, B256, B64, U256};
-use derive_more::Deref;
+use derive_more::{Deref, DerefMut};
 
 /// A block with senders recovered from the block's transactions.
 ///
@@ -27,15 +27,16 @@ use derive_more::Deref;
 /// Sender recovery is fallible and can fail if any of the transactions fail to recover the sender.
 /// A [`SealedBlock`] can be upgraded to a [`RecoveredBlock`] using the
 /// [`RecoveredBlock::try_recover`] or [`SealedBlock::try_recover`] method.
-#[derive(Debug, Clone, Deref)]
+#[derive(Debug, Clone, Deref, DerefMut)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct RecoveredBlock<B: Block> {
     /// Block
-    #[deref]
     #[cfg_attr(
         feature = "serde",
         serde(bound = "SealedBlock<B>: serde::Serialize + serde::de::DeserializeOwned")
     )]
+    #[deref]
+    #[deref_mut]
     block: SealedBlock<B>,
     /// List of senders that match the transactions in the block
     senders: Vec<Address>,
@@ -63,7 +64,7 @@ impl<B: Block> RecoveredBlock<B> {
     }
 
     /// Returns an iterator over the recovered senders.
-    pub fn senders_iter(&self) -> impl Iterator<Item = &Address> {
+    pub fn senders_iter(&self) -> impl Iterator<Item=&Address> {
         self.senders.iter()
     }
 
@@ -287,7 +288,7 @@ impl<B: Block> RecoveredBlock<B> {
     #[inline]
     pub fn transactions_with_sender(
         &self,
-    ) -> impl Iterator<Item = (&Address, &<B::Body as BlockBody>::Transaction)> + '_ {
+    ) -> impl Iterator<Item=(&Address, &<B::Body as BlockBody>::Transaction)> + '_ {
         self.senders.iter().zip(self.block.body().transactions())
     }
 
@@ -295,7 +296,7 @@ impl<B: Block> RecoveredBlock<B> {
     #[inline]
     pub fn clone_transactions_recovered(
         &self,
-    ) -> impl Iterator<Item = Recovered<<B::Body as BlockBody>::Transaction>> + '_ {
+    ) -> impl Iterator<Item=Recovered<<B::Body as BlockBody>::Transaction>> + '_ {
         self.transactions_with_sender()
             .map(|(sender, tx)| Recovered::new_unchecked(tx.clone(), *sender))
     }
@@ -304,7 +305,7 @@ impl<B: Block> RecoveredBlock<B> {
     #[inline]
     pub fn transactions_recovered(
         &self,
-    ) -> impl Iterator<Item = Recovered<&'_ <B::Body as BlockBody>::Transaction>> + '_ {
+    ) -> impl Iterator<Item=Recovered<&'_ <B::Body as BlockBody>::Transaction>> + '_ {
         self.transactions_with_sender().map(|(sender, tx)| Recovered::new_unchecked(tx, *sender))
     }
 
@@ -312,7 +313,7 @@ impl<B: Block> RecoveredBlock<B> {
     #[inline]
     pub fn into_transactions_recovered(
         self,
-    ) -> impl Iterator<Item = Recovered<<B::Body as BlockBody>::Transaction>> {
+    ) -> impl Iterator<Item=Recovered<<B::Body as BlockBody>::Transaction>> {
         self.block
             .split()
             .0
@@ -568,7 +569,7 @@ pub(super) mod serde_bincode_compat {
     }
 
     impl<'a, T: Block<Header: SerdeBincodeCompat, Body: SerdeBincodeCompat> + 'static>
-        From<&'a super::RecoveredBlock<T>> for RecoveredBlock<'a, T>
+    From<&'a super::RecoveredBlock<T>> for RecoveredBlock<'a, T>
     {
         fn from(value: &'a super::RecoveredBlock<T>) -> Self {
             Self { block: (&value.block).into(), senders: Cow::Borrowed(&value.senders) }
@@ -576,7 +577,7 @@ pub(super) mod serde_bincode_compat {
     }
 
     impl<'a, T: Block<Header: SerdeBincodeCompat, Body: SerdeBincodeCompat> + 'static>
-        From<RecoveredBlock<'a, T>> for super::RecoveredBlock<T>
+    From<RecoveredBlock<'a, T>> for super::RecoveredBlock<T>
     {
         fn from(value: RecoveredBlock<'a, T>) -> Self {
             Self::new_sealed(value.block.into(), value.senders.into_owned())
@@ -584,7 +585,7 @@ pub(super) mod serde_bincode_compat {
     }
 
     impl<T: Block<Header: SerdeBincodeCompat, Body: SerdeBincodeCompat> + 'static>
-        SerializeAs<super::RecoveredBlock<T>> for RecoveredBlock<'_, T>
+    SerializeAs<super::RecoveredBlock<T>> for RecoveredBlock<'_, T>
     {
         fn serialize_as<S>(
             source: &super::RecoveredBlock<T>,
@@ -598,7 +599,7 @@ pub(super) mod serde_bincode_compat {
     }
 
     impl<'de, T: Block<Header: SerdeBincodeCompat, Body: SerdeBincodeCompat> + 'static>
-        DeserializeAs<'de, super::RecoveredBlock<T>> for RecoveredBlock<'de, T>
+    DeserializeAs<'de, super::RecoveredBlock<T>> for RecoveredBlock<'de, T>
     {
         fn deserialize_as<D>(deserializer: D) -> Result<super::RecoveredBlock<T>, D::Error>
         where
@@ -609,7 +610,7 @@ pub(super) mod serde_bincode_compat {
     }
 
     impl<T: Block<Header: SerdeBincodeCompat, Body: SerdeBincodeCompat> + 'static>
-        SerdeBincodeCompat for super::RecoveredBlock<T>
+    SerdeBincodeCompat for super::RecoveredBlock<T>
     {
         type BincodeRepr<'a> = RecoveredBlock<'a, T>;
 
