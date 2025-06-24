@@ -27,7 +27,7 @@ use reth_primitives_traits::{
 use std::{fmt::Debug, sync::Arc, time::SystemTime};
 
 mod validation;
-pub use validation::validate_block_post_execution;
+pub use validation::{validate_block_post_execution, validate_subblock_post_execution};
 
 /// Ethereum beacon consensus
 ///
@@ -71,7 +71,7 @@ impl<ChainSpec: EthChainSpec + EthereumHardforks> EthBeaconConsensus<ChainSpec> 
                 return Err(ConsensusError::GasLimitInvalidIncrease {
                     parent_gas_limit,
                     child_gas_limit: header.gas_limit(),
-                })
+                });
             }
         }
         // Check for a decrease in gas limit beyond the allowed threshold.
@@ -141,7 +141,7 @@ where
         if self.chain_spec.is_shanghai_active_at_timestamp(header.timestamp()) &&
             header.withdrawals_root().is_none()
         {
-            return Err(ConsensusError::WithdrawalsRootMissing)
+            return Err(ConsensusError::WithdrawalsRootMissing);
         } else if !self.chain_spec.is_shanghai_active_at_timestamp(header.timestamp()) &&
             header.withdrawals_root().is_some()
         {
@@ -166,7 +166,7 @@ where
 
         if self.chain_spec.is_prague_active_at_timestamp(header.timestamp()) {
             if header.requests_hash().is_none() {
-                return Err(ConsensusError::RequestsHashMissing)
+                return Err(ConsensusError::RequestsHashMissing);
             }
         } else if header.requests_hash().is_some() {
             return Err(ConsensusError::RequestsHashUnexpected)
@@ -211,15 +211,15 @@ where
 
         if is_post_merge {
             if !header.difficulty().is_zero() {
-                return Err(ConsensusError::TheMergeDifficultyIsNotZero)
+                return Err(ConsensusError::TheMergeDifficultyIsNotZero);
             }
 
             if !header.nonce().is_some_and(|nonce| nonce.is_zero()) {
-                return Err(ConsensusError::TheMergeNonceIsNotZero)
+                return Err(ConsensusError::TheMergeNonceIsNotZero);
             }
 
             if header.ommers_hash() != EMPTY_OMMER_ROOT_HASH {
-                return Err(ConsensusError::TheMergeOmmerRootIsNotEmpty)
+                return Err(ConsensusError::TheMergeOmmerRootIsNotEmpty);
             }
 
             // Post-merge, the consensus layer is expected to perform checks such that the block
@@ -248,7 +248,7 @@ where
                 return Err(ConsensusError::TimestampIsInFuture {
                     timestamp: header.timestamp(),
                     present_timestamp,
-                })
+                });
             }
 
             validate_header_extra_data(header)?;

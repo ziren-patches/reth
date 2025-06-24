@@ -479,7 +479,9 @@ where
 
         strategy.apply_pre_execution_changes()?;
         for tx in block.transactions_recovered() {
-            strategy.execute_transaction(tx)?;
+            if strategy.execute_transaction(tx)? == 0 {
+                break;
+            }
         }
         let result = strategy.apply_post_execution_changes()?;
 

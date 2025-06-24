@@ -457,7 +457,7 @@ revm-inspectors = { git = "https://github.com/zkMIPS-patches/revm-inspectors", b
 alloy-chains = { version = "0.2.0", default-features = false }
 alloy-dyn-abi = "1.0.0"
 alloy-eip2124 = { version = "0.2.0", default-features = false }
-alloy-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0", default-features = false }
+alloy-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0-subblock", default-features = false }
 alloy-primitives = { version = "1.0.0", default-features = false, features = ["map-foldhash"] }
 alloy-rlp = { version = "0.3.10", default-features = false, features = ["core-net"] }
 alloy-sol-macro = "1.0.0"
