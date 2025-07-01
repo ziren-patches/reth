@@ -103,16 +103,16 @@ impl<EvmFactory> EthEvmConfig<EvmFactory> {
 impl<EvmF> ConfigureEvm for EthEvmConfig<EvmF>
 where
     EvmF: EvmFactory<
-            Tx: TransactionEnv
-                    + FromRecoveredTx<TransactionSigned>
-                    + FromTxWithEncoded<TransactionSigned>,
-            Spec = SpecId,
-        > + Clone
-        + Debug
-        + Send
-        + Sync
-        + Unpin
-        + 'static,
+        Tx: TransactionEnv
+        + FromRecoveredTx<TransactionSigned>
+        + FromTxWithEncoded<TransactionSigned>,
+        Spec=SpecId,
+    > + Clone
+    + Debug
+    + Send
+    + Sync
+    + Unpin
+    + 'static,
 {
     type Primitives = EthPrimitives;
     type Error = Infallible;
@@ -234,6 +234,7 @@ where
             is_last_subblock: block.is_last_subblock,
             subblock_gas_limit: block.subblock_gas_limit,
             starting_gas_used: block.starting_gas_used,
+            cumulative_gas_used: block.starting_gas_used,
         }
     }
 
@@ -252,6 +253,7 @@ where
             is_last_subblock: true,
             subblock_gas_limit: 0,
             starting_gas_used: 0,
+            cumulative_gas_used: 0,
         }
     }
 }
