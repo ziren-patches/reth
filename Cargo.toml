@@ -440,18 +440,18 @@ reth-ress-protocol = { path = "crates/ress/protocol" }
 reth-ress-provider = { path = "crates/ress/provider" }
 
 # revm
-revm = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-bytecode = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-database = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-state = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-primitives = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-interpreter = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-inspector = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-context = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-context-interface = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-database-interface = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-op-revm = { git = "https://github.com/zkMIPS-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
-revm-inspectors = { git = "https://github.com/zkMIPS-patches/revm-inspectors", branch = "patch-0.19.0-goat" }
+revm = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-bytecode = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-database = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-state = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-primitives = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-interpreter = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-inspector = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-context = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-context-interface = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-database-interface = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+op-revm = { git = "https://github.com/ziren-patches/revm", branch = "patch-22.0.0-goat", default-features = false }
+revm-inspectors = { git = "https://github.com/ziren-patches/revm-inspectors", branch = "patch-0.19.0-goat" }
 
 # revm = { path = "../revm/crates/revm", default-features = false }
 # revm-bytecode = { path = "../revm/crates/bytecode", default-features = false }
@@ -477,35 +477,35 @@ alloy-sol-types = { version = "1.0.0", default-features = false }
 alloy-trie = { version = "0.8.1", default-features = false }
 alloy-hardforks = "0.2.0"
 
-alloy-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0-goat", default-features = false }
-alloy-consensus = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-contract = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-eips = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-genesis = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-json-rpc = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-network = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-network-primitives = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-node-bindings = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-provider = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", features = ["reqwest"], default-features = false }
-alloy-pubsub = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-client = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-types = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", features = ["eth"], default-features = false }
-alloy-rpc-types-admin = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-types-anvil = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-types-beacon = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-types-debug = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-types-engine = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-types-eth = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-types-mev = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-types-trace = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-rpc-types-txpool = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-serde = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-signer = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-signer-local = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-transport = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat" }
-alloy-transport-http = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", features = ["reqwest-rustls-tls"], default-features = false }
-alloy-transport-ipc = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
-alloy-transport-ws = { git = "https://github.com/zkMIPS-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-evm = { git = "https://github.com/ziren-patches/evm", branch = "patch-0.4.0-goat", default-features = false }
+alloy-consensus = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-contract = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-eips = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-genesis = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-json-rpc = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-network = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-network-primitives = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-node-bindings = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-provider = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", features = ["reqwest"], default-features = false }
+alloy-pubsub = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-client = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", features = ["eth"], default-features = false }
+alloy-rpc-types-admin = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-anvil = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-beacon = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-debug = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-engine = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-eth = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-mev = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-trace = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-rpc-types-txpool = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-serde = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-signer = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-signer-local = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-transport = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat" }
+alloy-transport-http = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", features = ["reqwest-rustls-tls"], default-features = false }
+alloy-transport-ipc = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
+alloy-transport-ws = { git = "https://github.com/ziren-patches/alloy", branch = "patch-0.14.0-goat", default-features = false }
 
 # alloy-evm = { path = "../evm/crates/evm", default-features = false }
 # alloy-consensus = { path = "../alloy/crates/consensus", default-features = false }
@@ -541,12 +541,12 @@ alloy-transport-ws = { git = "https://github.com/zkMIPS-patches/alloy", branch =
 alloy-op-hardforks = "0.2.0"
 op-alloy-flz = { version = "0.13.0", default-features = false }
 
-alloy-op-evm = { git = "https://github.com/zkMIPS-patches/evm", branch = "patch-0.4.0-goat", default-features = false }
-op-alloy-rpc-types = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
-op-alloy-rpc-types-engine = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
-op-alloy-network = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
-op-alloy-consensus = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
-op-alloy-rpc-jsonrpsee = { git = "https://github.com/zkMIPS-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+alloy-op-evm = { git = "https://github.com/ziren-patches/evm", branch = "patch-0.4.0-goat", default-features = false }
+op-alloy-rpc-types = { git = "https://github.com/ziren-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+op-alloy-rpc-types-engine = { git = "https://github.com/ziren-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+op-alloy-network = { git = "https://github.com/ziren-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+op-alloy-consensus = { git = "https://github.com/ziren-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
+op-alloy-rpc-jsonrpsee = { git = "https://github.com/ziren-patches/op-alloy", branch = "patch-0.13.0-goat", default-features = false }
 
 # alloy-op-evm = { path = "../evm/crates/op-evm", default-features = false }
 # op-alloy-rpc-types = { path = "../op-alloy/crates/rpc-types", default-features = false }
