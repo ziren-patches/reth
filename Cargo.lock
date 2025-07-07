@@ -113,7 +113,7 @@ dependencies = [
 [[package]]
 name = "alloy-consensus"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-eips",
  "alloy-primitives 1.2.1",
@@ -137,7 +137,7 @@ dependencies = [
 [[package]]
 name = "alloy-consensus-any"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
@@ -151,7 +151,7 @@ dependencies = [
 [[package]]
 name = "alloy-contract"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-consensus",
  "alloy-dyn-abi",
@@ -232,7 +232,7 @@ dependencies = [
 [[package]]
 name = "alloy-eips"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-eip2124",
  "alloy-eip2930",
@@ -254,7 +254,7 @@ dependencies = [
 [[package]]
 name = "alloy-evm"
 version = "0.4.0"
-source = "git+https://github.com/ziren-patches/evm?branch=patch-0.4.0-goat#904a73c7546ceb8c08e3c9678747dff267fbc10b"
+source = "git+https://github.com/ziren-patches/evm?branch=patch-0.4.0#b8e97fdf74a09a31419e353dd66093b3fb236897"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
@@ -272,7 +272,7 @@ dependencies = [
 [[package]]
 name = "alloy-genesis"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-eips",
  "alloy-primitives 1.2.1",
@@ -310,7 +310,7 @@ dependencies = [
 [[package]]
 name = "alloy-json-rpc"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-primitives 1.2.1",
  "alloy-sol-types",
@@ -323,7 +323,7 @@ dependencies = [
 [[package]]
 name = "alloy-network"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-consensus",
  "alloy-consensus-any",
@@ -348,7 +348,7 @@ dependencies = [
 [[package]]
 name = "alloy-network-primitives"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
@@ -360,7 +360,7 @@ dependencies = [
 [[package]]
 name = "alloy-node-bindings"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-genesis",
  "alloy-hardforks",
@@ -380,7 +380,7 @@ dependencies = [
 [[package]]
 name = "alloy-op-evm"
 version = "0.4.0"
-source = "git+https://github.com/ziren-patches/evm?branch=patch-0.4.0-goat#904a73c7546ceb8c08e3c9678747dff267fbc10b"
+source = "git+https://github.com/ziren-patches/evm?branch=patch-0.4.0#b8e97fdf74a09a31419e353dd66093b3fb236897"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
@@ -466,7 +466,7 @@ dependencies = [
 [[package]]
 name = "alloy-provider"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-chains",
  "alloy-consensus",
@@ -509,7 +509,7 @@ dependencies = [
 [[package]]
 name = "alloy-pubsub"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-json-rpc",
  "alloy-primitives 1.2.1",
@@ -551,7 +551,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-client"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-json-rpc",
  "alloy-primitives 1.2.1",
@@ -578,7 +578,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-primitives 1.2.1",
  "alloy-rpc-types-engine",
@@ -590,7 +590,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-admin"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-genesis",
  "alloy-primitives 1.2.1",
@@ -601,7 +601,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-anvil"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-primitives 1.2.1",
  "alloy-rpc-types-eth",
@@ -612,7 +612,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-any"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-consensus-any",
  "alloy-rpc-types-eth",
@@ -622,7 +622,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-beacon"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-eips",
  "alloy-primitives 1.2.1",
@@ -639,7 +639,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-debug"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-primitives 1.2.1",
  "serde",
@@ -648,7 +648,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-engine"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
@@ -668,7 +668,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-eth"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-consensus",
  "alloy-consensus-any",
@@ -679,7 +679,7 @@ dependencies = [
  "alloy-serde",
  "alloy-sol-types",
  "arbitrary",
- "itertools 0.14.0",
+ "itertools 0.13.0",
  "jsonrpsee-types",
  "serde",
  "serde_json",
@@ -689,7 +689,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-mev"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-eips",
  "alloy-primitives 1.2.1",
@@ -702,7 +702,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-trace"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-primitives 1.2.1",
  "alloy-rpc-types-eth",
@@ -715,7 +715,7 @@ dependencies = [
 [[package]]
 name = "alloy-rpc-types-txpool"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-primitives 1.2.1",
  "alloy-rpc-types-eth",
@@ -726,7 +726,7 @@ dependencies = [
 [[package]]
 name = "alloy-serde"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-primitives 1.2.1",
  "arbitrary",
@@ -737,7 +737,7 @@ dependencies = [
 [[package]]
 name = "alloy-signer"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-primitives 1.2.1",
  "async-trait",
@@ -751,7 +751,7 @@ dependencies = [
 [[package]]
 name = "alloy-signer-local"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-consensus",
  "alloy-network",
@@ -838,7 +838,7 @@ dependencies = [
 [[package]]
 name = "alloy-transport"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-json-rpc",
  "base64 0.22.1",
@@ -859,7 +859,7 @@ dependencies = [
 [[package]]
 name = "alloy-transport-http"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-json-rpc",
  "alloy-transport",
@@ -873,7 +873,7 @@ dependencies = [
 [[package]]
 name = "alloy-transport-ipc"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-json-rpc",
  "alloy-pubsub",
@@ -892,7 +892,7 @@ dependencies = [
 [[package]]
 name = "alloy-transport-ws"
 version = "0.14.0"
-source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0-goat#013422b3d4387b210ac8350f76c61afcee71b78a"
+source = "git+https://github.com/ziren-patches/alloy?branch=patch-0.14.0#3ae18857e51ef85aae5220b12dfcaad3ce53ff9b"
 dependencies = [
  "alloy-pubsub",
  "alloy-transport",
@@ -5880,7 +5880,7 @@ checksum = "d6790f58c7ff633d8771f42965289203411a5e5c68388703c06e14f24770b41e"
 [[package]]
 name = "op-alloy-consensus"
 version = "0.13.0"
-source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0-goat#2f69f7e6c03e4fee2ae34f254b3f22c9045361df"
+source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0#d0ee5a615eccbb23c3d610a297508bf26d2b6629"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
@@ -5905,7 +5905,7 @@ checksum = "a79f352fc3893dcd670172e615afef993a41798a1d3fc0db88a3e60ef2e70ecc"
 [[package]]
 name = "op-alloy-network"
 version = "0.13.0"
-source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0-goat#2f69f7e6c03e4fee2ae34f254b3f22c9045361df"
+source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0#d0ee5a615eccbb23c3d610a297508bf26d2b6629"
 dependencies = [
  "alloy-consensus",
  "alloy-network",
@@ -5919,7 +5919,7 @@ dependencies = [
 [[package]]
 name = "op-alloy-rpc-jsonrpsee"
 version = "0.13.0"
-source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0-goat#2f69f7e6c03e4fee2ae34f254b3f22c9045361df"
+source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0#d0ee5a615eccbb23c3d610a297508bf26d2b6629"
 dependencies = [
  "alloy-primitives 1.2.1",
  "jsonrpsee",
@@ -5928,7 +5928,7 @@ dependencies = [
 [[package]]
 name = "op-alloy-rpc-types"
 version = "0.13.0"
-source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0-goat#2f69f7e6c03e4fee2ae34f254b3f22c9045361df"
+source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0#d0ee5a615eccbb23c3d610a297508bf26d2b6629"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
@@ -5945,7 +5945,7 @@ dependencies = [
 [[package]]
 name = "op-alloy-rpc-types-engine"
 version = "0.13.0"
-source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0-goat#2f69f7e6c03e4fee2ae34f254b3f22c9045361df"
+source = "git+https://github.com/ziren-patches/op-alloy?branch=patch-0.13.0#d0ee5a615eccbb23c3d610a297508bf26d2b6629"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
@@ -5982,7 +5982,7 @@ dependencies = [
 [[package]]
 name = "op-revm"
 version = "3.0.1"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "auto_impl",
  "once_cell",
@@ -10243,7 +10243,7 @@ dependencies = [
 [[package]]
 name = "revm"
 version = "22.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "revm-bytecode",
  "revm-context",
@@ -10261,7 +10261,7 @@ dependencies = [
 [[package]]
 name = "revm-bytecode"
 version = "3.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "bitvec",
  "phf",
@@ -10272,7 +10272,7 @@ dependencies = [
 [[package]]
 name = "revm-context"
 version = "3.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "alloy-consensus",
  "cfg-if",
@@ -10288,7 +10288,7 @@ dependencies = [
 [[package]]
 name = "revm-context-interface"
 version = "3.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "alloy-consensus",
  "alloy-eip2930",
@@ -10303,7 +10303,7 @@ dependencies = [
 [[package]]
 name = "revm-database"
 version = "3.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "alloy-eips",
  "revm-bytecode",
@@ -10316,7 +10316,7 @@ dependencies = [
 [[package]]
 name = "revm-database-interface"
 version = "3.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "auto_impl",
  "revm-primitives",
@@ -10327,7 +10327,7 @@ dependencies = [
 [[package]]
 name = "revm-handler"
 version = "3.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "auto_impl",
  "revm-bytecode",
@@ -10344,7 +10344,7 @@ dependencies = [
 [[package]]
 name = "revm-inspector"
 version = "3.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "auto_impl",
  "revm-context",
@@ -10360,7 +10360,7 @@ dependencies = [
 [[package]]
 name = "revm-inspectors"
 version = "0.19.0"
-source = "git+https://github.com/ziren-patches/revm-inspectors?branch=patch-0.19.0-goat#108aea75bc34df211837c79409ae5ac6aa60783a"
+source = "git+https://github.com/ziren-patches/revm-inspectors?branch=patch-0.19.0#1294807285f60a28197f17ad714db5131faac266"
 dependencies = [
  "alloy-primitives 1.2.1",
  "alloy-rpc-types-eth",
@@ -10379,7 +10379,7 @@ dependencies = [
 [[package]]
 name = "revm-interpreter"
 version = "18.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "revm-bytecode",
  "revm-context-interface",
@@ -10390,7 +10390,7 @@ dependencies = [
 [[package]]
 name = "revm-precompile"
 version = "19.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "ark-bls12-381",
  "ark-bn254",
@@ -10414,7 +10414,7 @@ dependencies = [
 [[package]]
 name = "revm-primitives"
 version = "18.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "alloy-primitives 1.2.1",
  "enumn",
@@ -10424,7 +10424,7 @@ dependencies = [
 [[package]]
 name = "revm-state"
 version = "3.0.0"
-source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0-goat#fbe033fa429f5faebd63c0f0f509c6a8c74076fe"
+source = "git+https://github.com/ziren-patches/revm?branch=patch-22.0.0#fe0b8b5e2591835b42c17d2f147a744f7cb12676"
 dependencies = [
  "bitflags 2.9.1",
  "revm-bytecode",
