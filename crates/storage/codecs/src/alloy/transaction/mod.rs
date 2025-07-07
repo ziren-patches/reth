@@ -1,7 +1,7 @@
 //! Compact implementation for transaction types
 use crate::Compact;
 use alloy_consensus::{
-    transaction::{RlpEcdsaEncodableTx, TxEip1559, TxEip2930, TxEip7702, TxLegacy},
+    transaction::{RlpEcdsaEncodableTx, TxEip1559, TxEip2930, TxEip7702, TxLegacy, TxGoat},
     EthereumTypedTransaction, TxType,
 };
 use alloy_primitives::bytes::BufMut;
@@ -21,6 +21,7 @@ where
             Self::Eip1559(tx) => tx.to_compact(buf),
             Self::Eip4844(tx) => tx.to_compact(buf),
             Self::Eip7702(tx) => tx.to_compact(buf),
+            Self::Goat(tx) => tx.to_compact(buf),
         };
         identifier
     }
@@ -49,11 +50,15 @@ where
                 let (tx, buf) = TxEip2930::from_compact(buf, buf.len());
                 (Self::Eip2930(tx), buf)
             }
+            TxType::Goat => {
+                let (tx, buf) = TxGoat::from_compact(buf, buf.len());
+                (Self::Goat(tx), buf)
+            }
         }
     }
 }
 
-cond_mod!(eip1559, eip2930, eip4844, eip7702, legacy, txtype);
+cond_mod!(eip1559, eip2930, eip4844, eip7702, legacy, goat, txtype);
 
 mod ethereum;
 #[cfg(all(feature = "test-utils", feature = "op"))]

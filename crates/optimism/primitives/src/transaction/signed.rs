@@ -232,6 +232,7 @@ impl FromRecoveredTx<OpTransactionSigned> for op_revm::OpTransaction<TxEnv> {
                 authorization_list: Default::default(),
                 tx_type: 0,
                 caller: sender,
+                ..Default::default()
             },
             OpTypedTransaction::Eip2930(tx) => TxEnv {
                 gas_limit: tx.gas_limit,
@@ -248,6 +249,7 @@ impl FromRecoveredTx<OpTransactionSigned> for op_revm::OpTransaction<TxEnv> {
                 authorization_list: Default::default(),
                 tx_type: 1,
                 caller: sender,
+                ..Default::default()
             },
             OpTypedTransaction::Eip1559(tx) => TxEnv {
                 gas_limit: tx.gas_limit,
@@ -264,6 +266,7 @@ impl FromRecoveredTx<OpTransactionSigned> for op_revm::OpTransaction<TxEnv> {
                 authorization_list: Default::default(),
                 tx_type: 2,
                 caller: sender,
+                ..Default::default()
             },
             OpTypedTransaction::Eip7702(tx) => TxEnv {
                 gas_limit: tx.gas_limit,
@@ -280,6 +283,7 @@ impl FromRecoveredTx<OpTransactionSigned> for op_revm::OpTransaction<TxEnv> {
                 authorization_list: tx.authorization_list.clone(),
                 tx_type: 4,
                 caller: sender,
+                ..Default::default()
             },
             OpTypedTransaction::Deposit(tx) => TxEnv {
                 gas_limit: tx.gas_limit,
@@ -296,6 +300,7 @@ impl FromRecoveredTx<OpTransactionSigned> for op_revm::OpTransaction<TxEnv> {
                 gas_priority_fee: Default::default(),
                 tx_type: 126,
                 caller: sender,
+                ..Default::default()
             },
         };
 

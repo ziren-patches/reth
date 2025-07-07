@@ -23,6 +23,7 @@ reth-trie-common.workspace = true
 reth-ethereum-primitives = { workspace = true, optional = true }
 
 revm.workspace = true
+revm-database.workspace = true
 op-revm = { workspace = true, optional = true }
 
 # alloy

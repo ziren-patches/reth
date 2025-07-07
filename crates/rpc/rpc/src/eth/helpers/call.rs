@@ -57,7 +57,9 @@ where
             return Err(RpcInvalidTransactionError::BlobTransactionMissingBlobHashes.into_eth_err())
         }
 
-        let tx_type = if request.authorization_list.is_some() {
+        let tx_type = if request.module.is_some() {
+            TxType::Goat
+        } else if request.authorization_list.is_some() {
             TxType::Eip7702
         } else if request.sidecar.is_some() || request.max_fee_per_blob_gas.is_some() {
             TxType::Eip4844
@@ -86,6 +88,8 @@ where
             authorization_list,
             transaction_type: _,
             sidecar: _,
+            module,
+            action,
         } = request;
 
         let CallFees { max_priority_fee_per_gas, gas_price, max_fee_per_blob_gas } =
@@ -140,6 +144,10 @@ where
                 .unwrap_or_default(),
             // EIP-7702 fields
             authorization_list: authorization_list.unwrap_or_default(),
+            // Goat system tx fields
+            module: module.unwrap_or_default(),
+            action: action.unwrap_or_default(),
+            goat: None,
         };
 
         Ok(env)

@@ -33,6 +33,10 @@ pub mod either;
 /// EVM environment configuration.
 pub mod execute;
 
+/// Goat EVM environment configuration.
+pub mod execute_goat;
+pub use execute_goat::allocate_goat_gas_fees;
+
 mod aliases;
 pub use aliases::*;
 

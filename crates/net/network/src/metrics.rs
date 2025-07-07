@@ -371,6 +371,9 @@ pub struct TxTypesCounter {
 
     /// Count of transactions conforming to EIP-7702 (Restricted Storage Windows).
     pub(crate) eip7702: usize,
+
+    /// Count of transactions conforming to Goat (Restricted Storage Windows).
+    pub(crate) goat: usize,
 }
 
 impl TxTypesCounter {
@@ -390,6 +393,9 @@ impl TxTypesCounter {
             }
             TxType::Eip7702 => {
                 self.eip7702 += 1;
+            }
+            TxType::Goat => {
+                self.goat += 1;
             }
         }
     }

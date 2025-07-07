@@ -1,7 +1,7 @@
 use crate::{Compact, Vec};
 use alloy_consensus::{
     transaction::RlpEcdsaEncodableTx, EthereumTxEnvelope, Signed, Transaction, TxEip1559,
-    TxEip2930, TxEip7702, TxLegacy, TxType,
+    TxEip2930, TxEip7702, TxLegacy, TxType, TxGoat,
 };
 use alloy_primitives::Signature;
 use bytes::{Buf, BufMut};
@@ -56,6 +56,7 @@ impl<Eip4844: Compact + Transaction> ToTxCompact for EthereumTxEnvelope<Eip4844>
             Self::Eip1559(tx) => tx.tx().to_compact(buf),
             Self::Eip4844(tx) => tx.tx().to_compact(buf),
             Self::Eip7702(tx) => tx.tx().to_compact(buf),
+            Self::Goat(tx) => tx.tx().to_compact(buf),
         };
     }
 }
@@ -93,6 +94,11 @@ impl<Eip4844: Compact + Transaction> FromTxCompact for EthereumTxEnvelope<Eip484
                 let (tx, buf) = TxEip7702::from_compact(buf, buf.len());
                 let tx = Signed::new_unhashed(tx, signature);
                 (Self::Eip7702(tx), buf)
+            }
+            TxType::Goat => {
+                let (tx, buf) = TxGoat::from_compact(buf, buf.len());
+                let tx = Signed::new_unhashed(tx, signature);
+                (Self::Goat(tx), buf)
             }
         }
     }

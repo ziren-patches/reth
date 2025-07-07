@@ -23,6 +23,7 @@ impl crate::Compact for TxType {
                 buf.put_u8(EIP7702_TX_TYPE_ID);
                 COMPACT_EXTENDED_IDENTIFIER_FLAG
             }
+            Self::Goat => COMPACT_IDENTIFIER_GOAT,
         }
     }
 

@@ -1,10 +1,11 @@
-use alloc::vec::Vec;
+use alloc::{borrow::ToOwned, vec::Vec};
+
 pub use alloy_consensus::{transaction::PooledTransaction, TxType};
 use alloy_consensus::{
     transaction::{RlpEcdsaDecodableTx, RlpEcdsaEncodableTx},
     BlobTransactionSidecar, EthereumTxEnvelope, SignableTransaction, Signed, TxEip1559, TxEip2930,
-    TxEip4844, TxEip4844Variant, TxEip4844WithSidecar, TxEip7702, TxEnvelope, TxLegacy, Typed2718,
-    TypedTransaction,
+    TxEip4844, TxEip4844Variant, TxEip4844WithSidecar, TxEip7702, TxEnvelope, TxGoat, TxLegacy,
+    Typed2718, TypedTransaction,
 };
 use alloy_eips::{
     eip2718::{Decodable2718, Eip2718Error, Eip2718Result, Encodable2718},
@@ -33,6 +34,7 @@ macro_rules! delegate {
             Transaction::Eip1559($tx) => $tx.$method($($arg),*),
             Transaction::Eip4844($tx) => $tx.$method($($arg),*),
             Transaction::Eip7702($tx) => $tx.$method($($arg),*),
+            Transaction::Goat($tx) => $tx.$method($($arg),*),
         }
     };
 }
@@ -103,6 +105,8 @@ pub enum Transaction {
     /// until re-assigned by the same EOA. This allows for adding smart contract functionality to
     /// the EOA.
     Eip7702(TxEip7702),
+    /// Goat system tx
+    Goat(TxGoat),
 }
 
 impl Transaction {
@@ -114,6 +118,7 @@ impl Transaction {
             Self::Eip1559(_) => TxType::Eip1559,
             Self::Eip4844(_) => TxType::Eip4844,
             Self::Eip7702(_) => TxType::Eip7702,
+            Self::Goat(_) => TxType::Goat,
         }
     }
 
@@ -125,6 +130,7 @@ impl Transaction {
             Self::Eip1559(tx) => tx.nonce = nonce,
             Self::Eip4844(tx) => tx.nonce = nonce,
             Self::Eip7702(tx) => tx.nonce = nonce,
+            Self::Goat(tx) => tx.nonce = nonce,
         }
     }
 
@@ -136,6 +142,15 @@ impl Transaction {
             Self::Eip1559(tx) => &mut tx.input,
             Self::Eip4844(tx) => &mut tx.input,
             Self::Eip7702(tx) => &mut tx.input,
+            Self::Goat(tx) => &mut tx.input,
+        }
+    }
+
+    /// Returns [`sender`] of the transaction.
+    pub fn sender(&self) -> Option<Address> {
+        match self {
+            Self::Goat(tx) => Some(tx.sender()),
+            _ => None,
         }
     }
 }
@@ -214,6 +229,18 @@ impl alloy_consensus::Transaction for Transaction {
     fn authorization_list(&self) -> Option<&[alloy_eips::eip7702::SignedAuthorization]> {
         delegate!(self => tx.authorization_list())
     }
+
+    fn is_goat_tx(&self) -> bool {
+        delegate!(self => tx.is_goat_tx())
+    }
+
+    fn deposit(&self) -> Option<alloy_consensus::transaction::goat_types::Mint> {
+        delegate!(self => tx.deposit())
+    }
+
+    fn withdraw(&self) -> Option<alloy_consensus::transaction::goat_types::Mint> {
+        delegate!(self => tx.withdraw())
+    }
 }
 
 impl SignableTransaction<Signature> for Transaction {
@@ -286,6 +313,10 @@ impl reth_codecs::Compact for Transaction {
                 let (tx, buf) = TxEip7702::from_compact(buf, buf.len());
                 (Self::Eip7702(tx), buf)
             }
+            TxType::Goat => {
+                let (tx, buf) = TxGoat::from_compact(buf, buf.len());
+                (Self::Goat(tx), buf)
+            }
         }
     }
 }
@@ -298,6 +329,7 @@ impl From<TypedTransaction> for Transaction {
             TypedTransaction::Eip1559(tx) => Self::Eip1559(tx),
             TypedTransaction::Eip4844(tx) => Self::Eip4844(tx.into()),
             TypedTransaction::Eip7702(tx) => Self::Eip7702(tx),
+            TypedTransaction::Goat(tx) => Self::Goat(tx),
         }
     }
 }
@@ -543,9 +575,21 @@ impl alloy_consensus::Transaction for TransactionSigned {
     fn authorization_list(&self) -> Option<&[SignedAuthorization]> {
         self.transaction.authorization_list()
     }
+
+    fn is_goat_tx(&self) -> bool {
+        self.transaction.is_goat_tx()
+    }
+
+    fn deposit(&self) -> Option<alloy_consensus::transaction::goat_types::Mint> {
+        self.transaction.deposit()
+    }
+
+    fn withdraw(&self) -> Option<alloy_consensus::transaction::goat_types::Mint> {
+        self.transaction.withdraw()
+    }
 }
 
-impl_from_signed!(TxLegacy, TxEip2930, TxEip1559, TxEip7702, TxEip4844, TypedTransaction);
+impl_from_signed!(TxLegacy, TxEip2930, TxEip1559, TxEip7702, TxEip4844, TxGoat, TypedTransaction);
 
 impl From<Signed<Transaction>> for TransactionSigned {
     fn from(value: Signed<Transaction>) -> Self {
@@ -587,6 +631,7 @@ impl From<TxEnvelope> for TransactionSigned {
             TxEnvelope::Eip1559(tx) => tx.into(),
             TxEnvelope::Eip4844(tx) => tx.into(),
             TxEnvelope::Eip7702(tx) => tx.into(),
+            TxEnvelope::Goat(tx) => tx.into(),
         }
     }
 }
@@ -600,6 +645,7 @@ impl From<TransactionSigned> for TxEnvelope {
             Transaction::Eip1559(tx) => Signed::new_unchecked(tx, signature, hash).into(),
             Transaction::Eip4844(tx) => Signed::new_unchecked(tx, signature, hash).into(),
             Transaction::Eip7702(tx) => Signed::new_unchecked(tx, signature, hash).into(),
+            Transaction::Goat(tx) => Signed::new_unchecked(tx, signature, hash).into(),
         }
     }
 }
@@ -613,6 +659,7 @@ impl From<TransactionSigned> for EthereumTxEnvelope<TxEip4844> {
             Transaction::Eip1559(tx) => Signed::new_unchecked(tx, signature, hash).into(),
             Transaction::Eip4844(tx) => Signed::new_unchecked(tx, signature, hash).into(),
             Transaction::Eip7702(tx) => Signed::new_unchecked(tx, signature, hash).into(),
+            Transaction::Goat(tx) => Signed::new_unchecked(tx, signature, hash).into(),
         }
     }
 }
@@ -702,6 +749,10 @@ impl Decodable2718 for TransactionSigned {
                     signature,
                     hash: Default::default(),
                 })
+            }
+            TxType::Goat => {
+                let (tx, signature) = TxGoat::rlp_decode_with_signature(buf)?;
+                Ok(Self { transaction: Transaction::Goat(tx), signature, hash: Default::default() })
             }
         }
     }
@@ -828,6 +879,7 @@ impl FromRecoveredTx<TransactionSigned> for TxEnv {
                 authorization_list: Default::default(),
                 tx_type: 0,
                 caller: sender,
+                ..Default::default()
             },
             Transaction::Eip2930(tx) => Self {
                 gas_limit: tx.gas_limit,
@@ -844,6 +896,7 @@ impl FromRecoveredTx<TransactionSigned> for TxEnv {
                 authorization_list: Default::default(),
                 tx_type: 1,
                 caller: sender,
+                ..Default::default()
             },
             Transaction::Eip1559(tx) => Self {
                 gas_limit: tx.gas_limit,
@@ -860,6 +913,7 @@ impl FromRecoveredTx<TransactionSigned> for TxEnv {
                 authorization_list: Default::default(),
                 tx_type: 2,
                 caller: sender,
+                ..Default::default()
             },
             Transaction::Eip4844(tx) => Self {
                 gas_limit: tx.gas_limit,
@@ -876,6 +930,7 @@ impl FromRecoveredTx<TransactionSigned> for TxEnv {
                 authorization_list: Default::default(),
                 tx_type: 3,
                 caller: sender,
+                ..Default::default()
             },
             Transaction::Eip7702(tx) => Self {
                 gas_limit: tx.gas_limit,
@@ -892,7 +947,25 @@ impl FromRecoveredTx<TransactionSigned> for TxEnv {
                 authorization_list: tx.authorization_list.clone(),
                 tx_type: 4,
                 caller: sender,
+                ..Default::default()
             },
+            Transaction::Goat(tx) => {
+                let mut goat_tx = tx.to_owned();
+                let goat = goat_tx.decode_tx().expect("decode goat tx err");
+
+                Self {
+                    module: tx.module,
+                    action: tx.action,
+                    nonce: tx.nonce,
+                    data: tx.input.clone(),
+                    tx_type: 0x60,
+                    chain_id: Some(goat_tx.chain_id),
+                    caller: goat.sender(),
+                    kind: TxKind::Call(goat.to()),
+                    goat: Some(goat),
+                    ..Default::default()
+                }
+            }
         }
     }
 }
@@ -905,6 +978,7 @@ impl FromTxWithEncoded<TransactionSigned> for TxEnv {
             Transaction::Eip1559(tx) => Self::from_encoded_tx(tx, sender, encoded),
             Transaction::Eip4844(tx) => Self::from_encoded_tx(tx, sender, encoded),
             Transaction::Eip7702(tx) => Self::from_encoded_tx(tx, sender, encoded),
+            Transaction::Goat(tx) => Self::from_encoded_tx(tx, sender, encoded),
         }
     }
 }
@@ -915,6 +989,10 @@ impl SignedTransaction for TransactionSigned {
     }
 
     fn recover_signer(&self) -> Result<Address, RecoveryError> {
+        if self.is_goat() {
+            return Ok(self.transaction.sender().expect("goat tx sender is none"));
+        }
+
         let signature_hash = self.signature_hash();
         recover_signer(&self.signature, signature_hash)
     }
@@ -951,6 +1029,9 @@ impl TryFrom<TransactionSigned> for PooledTransaction {
             TransactionSigned { transaction: Transaction::Eip4844(_), .. } => {
                 Err(TransactionConversionError::UnsupportedForP2P)
             }
+            TransactionSigned { transaction: Transaction::Goat(tx), signature, .. } => {
+                Ok(Self::Goat(Signed::new_unchecked(tx, signature, hash)))
+            }
         }
     }
 }
@@ -966,6 +1047,7 @@ impl From<PooledTransaction> for TransactionSigned {
                 let (tx, signature, hash) = tx.into_parts();
                 Signed::new_unchecked(tx.tx, signature, hash).into()
             }
+            PooledTransaction::Goat(_) => todo!(),
         }
     }
 }
@@ -975,7 +1057,7 @@ impl From<PooledTransaction> for TransactionSigned {
 pub(super) mod serde_bincode_compat {
     use alloc::borrow::Cow;
     use alloy_consensus::{
-        transaction::serde_bincode_compat::{TxEip1559, TxEip2930, TxEip7702, TxLegacy},
+        transaction::serde_bincode_compat::{TxEip1559, TxEip2930, TxEip7702, TxGoat, TxLegacy},
         TxEip4844,
     };
     use alloy_primitives::{Signature, TxHash};
@@ -993,6 +1075,7 @@ pub(super) mod serde_bincode_compat {
         Eip1559(TxEip1559<'a>),
         Eip4844(Cow<'a, TxEip4844>),
         Eip7702(TxEip7702<'a>),
+        Goat(TxGoat<'a>),
     }
 
     impl<'a> From<&'a super::Transaction> for Transaction<'a> {
@@ -1003,6 +1086,7 @@ pub(super) mod serde_bincode_compat {
                 super::Transaction::Eip1559(tx) => Self::Eip1559(TxEip1559::from(tx)),
                 super::Transaction::Eip4844(tx) => Self::Eip4844(Cow::Borrowed(tx)),
                 super::Transaction::Eip7702(tx) => Self::Eip7702(TxEip7702::from(tx)),
+                super::Transaction::Goat(tx) => Self::Goat(TxGoat::from(tx)),
             }
         }
     }
@@ -1015,6 +1099,7 @@ pub(super) mod serde_bincode_compat {
                 Transaction::Eip1559(tx) => Self::Eip1559(tx.into()),
                 Transaction::Eip4844(tx) => Self::Eip4844(tx.into_owned()),
                 Transaction::Eip7702(tx) => Self::Eip7702(tx.into()),
+                Transaction::Goat(tx) => Self::Goat(tx.into()),
             }
         }
     }
