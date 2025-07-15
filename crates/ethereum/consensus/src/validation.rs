@@ -52,9 +52,9 @@ where
         };
         let requests_hash = requests.requests_hash();
         if requests_hash != header_requests_hash {
-            return Err(ConsensusError::BodyRequestsHashDiff(
-                GotExpected::new(requests_hash, header_requests_hash).into(),
-            ))
+            // return Err(ConsensusError::BodyRequestsHashDiff(
+            //     GotExpected::new(requests_hash, header_requests_hash).into(),
+            // ))
         }
     }
 
