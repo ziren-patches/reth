@@ -1,12 +1,12 @@
 //! Traits for execution.
 
 use crate::{ConfigureEvm, Database, OnStateHook};
-use alloc::{boxed::Box, vec::Vec};
+use alloc::{boxed::Box, vec, vec::Vec};
 use alloy_consensus::{BlockHeader, Header, Transaction};
 use alloy_eips::eip2718::WithEncoded;
 pub use alloy_evm::block::{BlockExecutor, BlockExecutorFactory};
 use alloy_evm::{block::ExecutableTx, Evm, EvmEnv, EvmFactory};
-use alloy_primitives::B256;
+use alloy_primitives::{Log, B256};
 use core::fmt::Debug;
 pub use reth_execution_errors::{
     BlockExecutionError, BlockValidationError, InternalBlockExecutionError,
@@ -24,6 +24,8 @@ use revm::{
     database::{states::bundle_state::BundleRetention, BundleState, State},
     primitives::goat::{GOAT_CHAIN_ID, GOAT_TESTNET_CHAIN_ID},
 };
+
+use crate::execute_goat::{allocate_goat_gas_fees, process_goat_requests};
 
 /// A type that knows how to execute a block. It is assumed to operate on a
 /// [`crate::Evm`] internally and use [`State`] as database.
@@ -489,9 +491,25 @@ where
 
         let mut goat_gas_fees = 0u128;
         let basefee = strategy.evm().block().basefee;
+        let mut all_logs: Vec<Log> = vec![];
 
         for tx in block.transactions_recovered() {
-            let gas_used = strategy.execute_transaction(tx)? as u128;
+            let gas_used = if is_goat_chain(self.chain_id) {
+                strategy.execute_transaction_with_result_closure(tx, |result| {
+                    if let ExecutionResult::Success {
+                        reason: _,
+                        gas_used: _,
+                        gas_refunded: _,
+                        logs,
+                        output: _,
+                    } = result
+                    {
+                        all_logs.extend(logs.clone());
+                    }
+                })
+            } else {
+                strategy.execute_transaction(tx)
+            }? as u128;
 
             if is_goat_chain(self.chain_id) && !tx.is_goat_tx() {
                 let effective_tip_per_gas = tx.effective_tip_per_gas(basefee).unwrap_or_default();
@@ -500,13 +518,20 @@ where
             }
         }
 
-        if is_goat_chain(self.chain_id) {
+        let reward = if is_goat_chain(self.chain_id) {
             let burnt_fees = (basefee as u128).saturating_mul(block.gas_used() as u128);
             goat_gas_fees = goat_gas_fees.saturating_add(burnt_fees);
-            crate::allocate_goat_gas_fees(strategy.evm_mut().db_mut(), goat_gas_fees)?;
-        }
+            allocate_goat_gas_fees(strategy.evm_mut().db_mut(), goat_gas_fees)?
+        } else {
+            0
+        };
 
-        let result = strategy.apply_post_execution_changes()?;
+        let mut result = strategy.apply_post_execution_changes()?;
+
+        if is_goat_chain(self.chain_id) {
+            result.requests = process_goat_requests(block.header().number(), reward, all_logs)
+                .map_err(BlockExecutionError::Goat)?;
+        }
 
         self.db.merge_transitions(BundleRetention::Reverts);
 
