@@ -11,6 +11,8 @@ repository.workspace = true
 workspace = true
 
 [dependencies]
+anyhow = "1.0.98"
+
 # reth
 reth-execution-errors.workspace = true
 reth-execution-types.workspace = true

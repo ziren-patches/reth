@@ -145,6 +145,7 @@ impl InsertBlockErrorKind {
                     BlockExecutionError::Internal(error) => {
                         Err(InsertBlockFatalError::BlockExecutionError(error))
                     }
+                    BlockExecutionError::Goat(_) => todo!("Handle goat errors in block execution"),
                 }
             }
             Self::Provider(err) => Err(InsertBlockFatalError::Provider(err)),
