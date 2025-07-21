@@ -53,7 +53,7 @@ pub fn process_goat_requests(
 
     for log in all_logs {
         match log.address {
-            BITCOINT_CONTRACT => {
+            BRIDGE_CONTRACT => {
                 if log.data.topics().len() < 1 {
                     continue;
                 }
