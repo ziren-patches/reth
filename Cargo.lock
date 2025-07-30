@@ -259,8 +259,8 @@ dependencies = [
 
 [[package]]
 name = "alloy-evm"
-version = "0.14.0"
-source = "git+https://github.com/ziren-patches/evm?branch=patch-0.14.0#f6a08ead585117a0127f21a7346cee0a272580f7"
+version = "0.12.3"
+source = "git+https://github.com/ziren-patches/evm?branch=patch-0.12.3#a1324dfa413834d5eb91c0c6e1aeaeb284b445f1"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
@@ -372,8 +372,8 @@ dependencies = [
 
 [[package]]
 name = "alloy-op-evm"
-version = "0.14.0"
-source = "git+https://github.com/ziren-patches/evm?branch=patch-0.14.0#f6a08ead585117a0127f21a7346cee0a272580f7"
+version = "0.12.3"
+source = "git+https://github.com/ziren-patches/evm?branch=patch-0.12.3#a1324dfa413834d5eb91c0c6e1aeaeb284b445f1"
 dependencies = [
  "alloy-consensus",
  "alloy-eips",
