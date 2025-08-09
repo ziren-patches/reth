@@ -29,7 +29,7 @@ use reth_primitives_traits::{
 };
 
 mod validation;
-pub use validation::validate_block_post_execution;
+pub use validation::{validate_block_post_execution, validate_subblock_post_execution};
 
 /// Ethereum beacon consensus
 ///
@@ -73,7 +73,7 @@ impl<ChainSpec: EthChainSpec + EthereumHardforks> EthBeaconConsensus<ChainSpec> 
                 return Err(ConsensusError::GasLimitInvalidIncrease {
                     parent_gas_limit,
                     child_gas_limit: header.gas_limit(),
-                })
+                });
             }
         }
         // Check for a decrease in gas limit beyond the allowed threshold.
@@ -177,7 +177,7 @@ where
         if self.chain_spec.is_shanghai_active_at_timestamp(header.timestamp()) &&
             header.withdrawals_root().is_none()
         {
-            return Err(ConsensusError::WithdrawalsRootMissing)
+            return Err(ConsensusError::WithdrawalsRootMissing);
         } else if !self.chain_spec.is_shanghai_active_at_timestamp(header.timestamp()) &&
             header.withdrawals_root().is_some()
         {
@@ -202,7 +202,7 @@ where
 
         if self.chain_spec.is_prague_active_at_timestamp(header.timestamp()) {
             if header.requests_hash().is_none() {
-                return Err(ConsensusError::RequestsHashMissing)
+                return Err(ConsensusError::RequestsHashMissing);
             }
         } else if header.requests_hash().is_some() {
             return Err(ConsensusError::RequestsHashUnexpected)

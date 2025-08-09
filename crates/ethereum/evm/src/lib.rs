@@ -258,6 +258,12 @@ where
             parent_beacon_block_root: block.header().parent_beacon_block_root,
             ommers: &block.body().ommers,
             withdrawals: block.body().withdrawals.as_ref().map(Cow::Borrowed),
+            number_of_transactions: block.transaction_count(),
+            is_first_subblock: block.is_first_subblock,
+            is_last_subblock: block.is_last_subblock,
+            subblock_gas_limit: block.subblock_gas_limit,
+            starting_gas_used: block.starting_gas_used,
+            cumulative_gas_used: block.starting_gas_used,
         }
     }
 
@@ -271,6 +277,12 @@ where
             parent_beacon_block_root: attributes.parent_beacon_block_root,
             ommers: &[],
             withdrawals: attributes.withdrawals.map(Cow::Owned),
+            number_of_transactions: 0,
+            is_first_subblock: true,
+            is_last_subblock: true,
+            subblock_gas_limit: 0,
+            starting_gas_used: 0,
+            cumulative_gas_used: 0,
         }
     }
 }
