@@ -546,7 +546,7 @@ impl<B: Block> RecoveredBlock<B> {
     }
 }
 
-#[cfg(any(test, feature = "test-utils"))]
+// #[cfg(any(test, feature = "test-utils"))]
 impl<B> core::ops::DerefMut for RecoveredBlock<B>
 where
     B: Block,
