@@ -17,6 +17,7 @@ pub fn validate_block_post_execution<B, R, ChainSpec>(
     chain_spec: &ChainSpec,
     receipts: &[R],
     requests: &Requests,
+    is_goat_testnet: bool,
 ) -> Result<(), ConsensusError>
 where
     B: Block,
@@ -37,7 +38,13 @@ where
     // operation as hashing that is required for state root got calculated in every
     // transaction This was replaced with is_success flag.
     // See more about EIP here: https://eips.ethereum.org/EIPS/eip-658
+    //
+    // The code on the goat testnet and mainnet is inconsistent,
+    // causing the `receiptRoot` calculated on the testnet to be different.
+    // eg. differences between goat testnet and mainnet code:
+    // https://github.com/GOATNetwork/goat-geth/compare/v0.4.0...GOATNetwork:goat-geth:v0.1.10
     if chain_spec.is_byzantium_active_at_block(block.header().number()) &&
+        !is_goat_testnet &&
         let Err(error) = verify_receipts(
             block.header().receipts_root(),
             block.header().logs_bloom(),

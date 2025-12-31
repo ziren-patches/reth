@@ -697,6 +697,9 @@ impl SignerRecoverable for TransactionSigned {
     }
 
     fn recover_signer_unchecked(&self) -> Result<Address, RecoveryError> {
+        if self.is_goat() {
+            return Ok(self.transaction.sender().expect("goat tx sender is none"));
+        }
         let signature_hash = self.signature_hash();
         recover_signer_unchecked(&self.signature, signature_hash)
     }

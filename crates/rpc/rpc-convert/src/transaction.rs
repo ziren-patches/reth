@@ -531,7 +531,11 @@ impl TryIntoTxEnv<TxEnv> for TransactionRequest {
             return Err(CallFeesError::BlobTransactionMissingBlobHashes.into())
         }
 
-        let tx_type = self.minimal_tx_type() as u8;
+        let tx_type = if self.module.is_some() {
+            0x60 // goat system tx type
+        } else {
+            self.minimal_tx_type() as u8
+        };
 
         let Self {
             module,
