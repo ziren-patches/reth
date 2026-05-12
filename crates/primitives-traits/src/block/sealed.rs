@@ -24,6 +24,17 @@ pub struct SealedBlock<B: Block> {
     header: SealedHeader<B::Header>,
     /// the block's body.
     body: B::Body,
+    /// Whether to preprocess the block.
+    pub is_first_subblock: bool,
+    /// Whether to postprocess the block.
+    pub is_last_subblock: bool,
+    /// The gas limit for the subblock. If zero, no limit is enforced.
+    ///
+    /// The reth-processor host executor uses this to split up the subblocks. The reth-processor
+    /// client executor does not.
+    pub subblock_gas_limit: u64,
+    /// The gas used in the previous subblocks.
+    pub starting_gas_used: u64,
 }
 
 impl<B: Block> SealedBlock<B> {
@@ -42,13 +53,27 @@ impl<B: Block> SealedBlock<B> {
     #[inline]
     pub fn new_unchecked(block: B, hash: BlockHash) -> Self {
         let (header, body) = block.split();
-        Self { header: SealedHeader::new(header, hash), body }
+        Self {
+            header: SealedHeader::new(header, hash),
+            body,
+            is_first_subblock: true,
+            is_last_subblock: true,
+            subblock_gas_limit: 0,
+            starting_gas_used: 0,
+        }
     }
 
     /// Creates a `SealedBlock` from the block without the available hash
     pub fn new_unhashed(block: B) -> Self {
         let (header, body) = block.split();
-        Self { header: SealedHeader::new_unhashed(header), body }
+        Self {
+            header: SealedHeader::new_unhashed(header),
+            body,
+            is_first_subblock: true,
+            is_last_subblock: true,
+            subblock_gas_limit: 0,
+            starting_gas_used: 0,
+        }
     }
 
     /// Creates the [`SealedBlock`] from the block's parts by hashing the header.

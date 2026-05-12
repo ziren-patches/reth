@@ -59,6 +59,18 @@ pub struct RecoveredBlock<B: Block> {
     block: SealedBlock<B>,
     /// List of senders that match the transactions in the block
     senders: Vec<Address>,
+    /// Whether this is the first subblock of a larger block.
+    ///
+    /// Defaults to `true` for non-subblock execution.
+    is_first_subblock: bool,
+    /// Whether this is the last subblock of a larger block.
+    ///
+    /// Defaults to `true` for non-subblock execution.
+    is_last_subblock: bool,
+    /// Gas limit for subblock execution. If `0`, no subblock gas limit is enforced.
+    subblock_gas_limit: u64,
+    /// Gas used in previous subblocks.
+    starting_gas_used: u64,
 }
 
 impl<B: Block> RecoveredBlock<B> {
@@ -67,14 +79,28 @@ impl<B: Block> RecoveredBlock<B> {
     ///
     /// Note: This expects that the given senders match the transactions in the block.
     pub fn new(block: B, senders: Vec<Address>, hash: BlockHash) -> Self {
-        Self { block: SealedBlock::new_unchecked(block, hash), senders }
+        Self {
+            block: SealedBlock::new_unchecked(block, hash),
+            senders,
+            is_first_subblock: true,
+            is_last_subblock: true,
+            subblock_gas_limit: 0,
+            starting_gas_used: 0,
+        }
     }
 
     /// Creates a new recovered block instance with the given senders as provided.
     ///
     /// Note: This expects that the given senders match the transactions in the block.
     pub fn new_unhashed(block: B, senders: Vec<Address>) -> Self {
-        Self { block: SealedBlock::new_unhashed(block), senders }
+        Self {
+            block: SealedBlock::new_unhashed(block),
+            senders,
+            is_first_subblock: true,
+            is_last_subblock: true,
+            subblock_gas_limit: 0,
+            starting_gas_used: 0,
+        }
     }
 
     /// Returns the recovered senders.
@@ -100,7 +126,73 @@ impl<B: Block> RecoveredBlock<B> {
     /// Creates a new recovered block instance with the given [`SealedBlock`] and senders as
     /// provided
     pub const fn new_sealed(block: SealedBlock<B>, senders: Vec<Address>) -> Self {
-        Self { block, senders }
+        Self {
+            block,
+            senders,
+            is_first_subblock: true,
+            is_last_subblock: true,
+            subblock_gas_limit: 0,
+            starting_gas_used: 0,
+        }
+    }
+
+    /// Returns whether this is the first subblock.
+    pub const fn is_first_subblock(&self) -> bool {
+        self.is_first_subblock
+    }
+
+    /// Returns whether this is the last subblock.
+    pub const fn is_last_subblock(&self) -> bool {
+        self.is_last_subblock
+    }
+
+    /// Returns the configured subblock gas limit. If `0`, no limit is enforced.
+    pub const fn subblock_gas_limit(&self) -> u64 {
+        self.subblock_gas_limit
+    }
+
+    /// Returns the gas used in previous subblocks.
+    pub const fn starting_gas_used(&self) -> u64 {
+        self.starting_gas_used
+    }
+
+    /// Sets subblock metadata for this block.
+    pub fn set_subblock_metadata(
+        &mut self,
+        is_first_subblock: bool,
+        is_last_subblock: bool,
+        subblock_gas_limit: u64,
+        starting_gas_used: u64,
+    ) {
+        self.is_first_subblock = is_first_subblock;
+        self.is_last_subblock = is_last_subblock;
+        self.subblock_gas_limit = subblock_gas_limit;
+        self.starting_gas_used = starting_gas_used;
+
+        // Keep inner sealed block metadata in sync so consumers that only see the
+        // `SealedBlock` (e.g. `ConfigureEvm::context_for_block`) observe the same values.
+        self.block.is_first_subblock = is_first_subblock;
+        self.block.is_last_subblock = is_last_subblock;
+        self.block.subblock_gas_limit = subblock_gas_limit;
+        self.block.starting_gas_used = starting_gas_used;
+    }
+
+    /// Returns a copy of this block with updated subblock metadata.
+    #[must_use]
+    pub fn with_subblock_metadata(
+        mut self,
+        is_first_subblock: bool,
+        is_last_subblock: bool,
+        subblock_gas_limit: u64,
+        starting_gas_used: u64,
+    ) -> Self {
+        self.set_subblock_metadata(
+            is_first_subblock,
+            is_last_subblock,
+            subblock_gas_limit,
+            starting_gas_used,
+        );
+        self
     }
 
     /// A safer variant of [`Self::new`] that checks if the number of senders is equal to

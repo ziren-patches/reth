@@ -29,7 +29,7 @@ use reth_primitives_traits::{
 };
 
 mod validation;
-pub use validation::validate_block_post_execution;
+pub use validation::{validate_block_post_execution, validate_subblock_post_execution};
 
 /// Ethereum beacon consensus
 ///

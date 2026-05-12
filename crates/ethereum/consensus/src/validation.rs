@@ -68,6 +68,59 @@ where
     Ok(())
 }
 
+/// Validate a header with regard to execution results.
+///
+/// This is useful when validating *subblocks* that may carry an adjusted header (for example when
+/// executing a portion of a larger block).
+pub fn validate_subblock_post_execution<H, R, ChainSpec>(
+    header: &H,
+    chain_spec: &ChainSpec,
+    receipts: &[R],
+    requests: &Requests,
+) -> Result<(), ConsensusError>
+where
+    H: BlockHeader,
+    R: Receipt,
+    ChainSpec: EthereumHardforks,
+{
+    // Check if gas used matches the value set in header.
+    let cumulative_gas_used =
+        receipts.last().map(|receipt| receipt.cumulative_gas_used()).unwrap_or(0);
+    if header.gas_used() != cumulative_gas_used {
+        return Err(ConsensusError::BlockGasUsed {
+            gas: GotExpected { got: cumulative_gas_used, expected: header.gas_used() },
+            gas_spent_by_tx: gas_spent_by_transactions(receipts),
+        })
+    }
+
+    // See EIP-658.
+    if chain_spec.is_byzantium_active_at_block(header.number()) &&
+        let Err(error) = verify_receipts(header.receipts_root(), header.logs_bloom(), receipts)
+    {
+        let receipts = receipts
+            .iter()
+            .map(|r| Bytes::from(r.with_bloom_ref().encoded_2718()))
+            .collect::<Vec<_>>();
+        tracing::debug!(%error, ?receipts, "receipts verification failed");
+        return Err(error)
+    }
+
+    // Validate that the header requests hash matches the calculated requests hash
+    if chain_spec.is_prague_active_at_timestamp(header.timestamp()) {
+        let Some(header_requests_hash) = header.requests_hash() else {
+            return Err(ConsensusError::RequestsHashMissing)
+        };
+        let requests_hash = requests.requests_hash();
+        if requests_hash != header_requests_hash {
+            return Err(ConsensusError::BodyRequestsHashDiff(
+                GotExpected::new(requests_hash, header_requests_hash).into(),
+            ))
+        }
+    }
+
+    Ok(())
+}
+
 /// Calculate the receipts root, and compare it against the expected receipts root and logs
 /// bloom.
 fn verify_receipts<R: Receipt>(
